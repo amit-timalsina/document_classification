@@ -5,7 +5,7 @@ import pandas as pd
 from paddleocr import PaddleOCR  # type: ignore[import-untyped]
 
 from ocr.base import OCRProvider
-from ocr.schemas.ocr_result import OCRResult
+from ocr.schemas.ocr_result import OcrResult
 
 
 class PaddleOCRProvider(OCRProvider):
@@ -15,12 +15,12 @@ class PaddleOCRProvider(OCRProvider):
         """Initialize the Paddle OCR provider."""
         self.ocr = PaddleOCR(use_angle_cls=True, lang="en")
 
-    def perform_ocr(self, image: np.ndarray) -> pd.DataFrame:
+    def perform_ocr(self, image: np.ndarray) -> OcrResult:
         """Take an image and return OCR results."""
         result = self.ocr.ocr(image, cls=True)
         return self.format_result(result)
 
-    def format_result(self, result: list) -> pd.DataFrame:
+    def format_result(self, result: list) -> OcrResult:
         """Format the OCR result into a pandas dataframe."""
         data = []
         for line in result:
@@ -36,4 +36,4 @@ class PaddleOCRProvider(OCRProvider):
                         "y2": bbox[2][1],
                     },
                 )
-        return OCRResult(df=pd.DataFrame(data)).standardize_output()
+        return OcrResult(ocr_df=pd.DataFrame(data))

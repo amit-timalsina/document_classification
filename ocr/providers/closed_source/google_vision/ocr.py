@@ -1,9 +1,8 @@
 import numpy as np
-import pandas as pd
 from google.cloud import vision
 
 from ocr.base import OCRProvider
-from ocr.schemas.ocr_result import OCRResult
+from ocr.schemas.ocr_result import OcrResult
 
 from .client import GoogleVisionClient
 from .credentials import GoogleCredentialsManager
@@ -27,7 +26,7 @@ class GoogleVisionOCR(OCRProvider):
         """Create a client for interacting with Google Vision API."""
         return GoogleVisionClient.create_client()
 
-    def perform_ocr(self, image: np.ndarray) -> pd.DataFrame:
+    def perform_ocr(self, image: np.ndarray) -> OcrResult:
         """
         Perform OCR on the given image and return standardized results.
 
@@ -39,4 +38,4 @@ class GoogleVisionOCR(OCRProvider):
 
         """
         ocr_dataframe = self.processor.perform_ocr(image)
-        return OCRResult(df=ocr_dataframe).standardize_output()
+        return OcrResult(ocr_df=ocr_dataframe)

@@ -12,6 +12,8 @@ def df_to_text(df: pd.DataFrame) -> str:
             text += " "
         elif row.space_type in [3, 4]:
             text += "\n"
+        elif row.space_type is None:
+            text += " "
         else:
             text += "\n\n"
     return text.strip()

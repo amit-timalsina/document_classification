@@ -3,9 +3,9 @@ from pathlib import Path
 
 import cv2
 import numpy as np
-import pandas as pd
 
 from ocr.exceptions.ocr_processing_error import ImageNotFoundError
+from ocr.schemas.ocr_result import OcrResult
 
 
 class ImageReader:
@@ -33,5 +33,5 @@ class OCRProvider(ABC):
     """Base class for OCR providers."""
 
     @abstractmethod
-    def perform_ocr(self, image: np.ndarray) -> pd.DataFrame:
+    def perform_ocr(self, image: np.ndarray) -> OcrResult:
         """Take an image and return OCR results."""
