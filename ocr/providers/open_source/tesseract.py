@@ -4,7 +4,7 @@ import pytesseract  # type: ignore[import-untyped]
 
 from ocr.base import OCRProvider
 from ocr.config import ocr_config
-from ocr.mappings import standard_to_tesseract
+from ocr.providers.mappings import standard_to_tesseract
 from ocr.schemas.ocr_result import OCRResult
 
 
