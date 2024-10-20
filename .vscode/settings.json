@@ -1,0 +1,24 @@
+{
+    "files.eol": "\n",
+    "python.testing.pytestEnabled": true,
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+      },
+      "editor.rulers": [100],
+    },
+    "files.exclude": {
+      "**/__pycache__": true
+    },
+    "[markdown]": {
+      "editor.formatOnSave": true
+    },
+    "files.associations": {
+      "todo.md": "plaintext"
+    },
+    "[plaintext]": {
+      "editor.formatOnSave": false
+    }
+}
