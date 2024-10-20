@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "document-classification"
+version = "0.1.0"
+description = "Awesome document classifcation - Implementation of major techniques"
+authors = ["Amit Timalsina <amittimalsina14@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+docquery = "^0.0.7"
+pydantic = "^1.0.0"
+transformers = "4.23"
+pandas = "^2.2.3"
+loguru = "^0.7.2"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.12.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
