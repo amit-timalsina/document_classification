@@ -22,6 +22,7 @@ google-cloud-vision = "^3.7.4"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.12.1"
+ruff = "^0.7.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,5 +1,6 @@
-logs/*
+logs
 .venv
 .mypy_cache
 __pycache__
 files
+.env
