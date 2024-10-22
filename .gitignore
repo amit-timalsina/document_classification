@@ -4,3 +4,7 @@ logs
 __pycache__
 files
 .env
+ocr_jsons
+*.bin
+dataset
+metrics.json

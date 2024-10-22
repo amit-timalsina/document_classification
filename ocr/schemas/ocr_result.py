@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pandas as pd
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -23,3 +25,8 @@ class OcrResult(BaseModel):
     def ocr_text(self) -> str:
         """Return the OCR text."""
         return df_to_text(self.ocr_df)
+
+    @property
+    def ocr_dict(self) -> list[dict]:
+        """Return the OCR text as a dictionary."""
+        return self.ocr_df.to_dict(orient="records")

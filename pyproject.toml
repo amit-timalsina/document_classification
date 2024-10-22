@@ -18,6 +18,7 @@ paddlepaddle = "^2.6.2"
 albumentations = "^1.4.18"
 google = "^3.0.0"
 google-cloud-vision = "^3.7.4"
+fasttext = "^0.9.3"
 
 
 [tool.poetry.group.dev.dependencies]
