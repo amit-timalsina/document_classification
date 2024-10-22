@@ -25,15 +25,15 @@ OCR
 
 Classification
     Text only Models
-        LLM Based classification
-        Fasttext
+        LLM Based classification {due:2024-10-22}
+        Fasttext {due:2024-10-22}
         BERT
     Text + Layout Models
         BROS
-        LayoutLM
+        LayoutLM {due:2024-10-23}
     Text + Layout Models + Vision Models
         LayoutLMV2
-        Donut
+        Donut {due:2024-10-23}
     Embedding
         Semantic Similarity
         Clustering
