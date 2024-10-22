@@ -8,7 +8,7 @@ import fasttext  # type: ignore[import-untyped]
 from logger import logger
 
 
-def accuracy_matrix_tf(test_file_path: Path, model: fasttext.FastText) -> dict:
+def accuracy_matrix_tf(test_file_path: Path, model: fasttext.FastText._FastText) -> dict:
     """
     Calculate accuracy matrix for a FastText model.
 
