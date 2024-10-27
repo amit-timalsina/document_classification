@@ -3,7 +3,10 @@
 import json
 from pathlib import Path
 
-from fasttext_model.evaluate.evaluate import evaluate
+import cv2
+
+from fasttext_model.inference.infer import Infer
+from fasttext_model.text_preprocessor import TextPreprocessor
 from logger import logger
 from ocr.providers.closed_source.google_vision.ocr import GoogleVisionOCR
 from ocr.readers.file_reader import FileReader
@@ -53,13 +56,29 @@ if __name__ == "__main__":
     output_model_path = Path("fasttext_model/model.bin")
     metrics_path = Path("fasttext_model/metrics.json")
     # execute_ocr(files_directory, ocr_json_directory)
-    # create_fasttext_dataset(
+    # dataset_preparer = DatasetPreparer(preprocessor=TextPreprocessor())
+    # dataset_preparer.create_dataset(
     #     data_folder_path=str(ocr_json_directory),
     #     output_folder_path=str(fasttext_dataset_directory),
     # )
     # train_fasttext(dataset_dir_path=fasttext_dataset_directory, output_model_path=output_model_path)
-    evaluate(
-        dataset_dir_path=fasttext_dataset_directory,
-        model_path=output_model_path,
-        save_metrices_path=metrics_path,
-    )
+    # evaluate(
+    #     dataset_dir_path=fasttext_dataset_directory,
+    #     model_path=output_model_path,
+    #     save_metrices_path=metrics_path,
+    # )
+
+    # Infer model
+    ocr_provider = GoogleVisionOCR()
+    file_path = files_directory / "e9e2ac9325664b4c9ca0324d5a5d782e.pdf"
+    images = FileReader.read_file_from_path(str(file_path))
+    ocr_dicts = []
+
+    for i, image in enumerate(images):
+        ocr_result = ocr_provider.perform_ocr(image)
+        ocr_result.ocr_df.to_json(f"temp_ocr/{file_path.stem}_{i}.json", orient="records")
+        cv2.imwrite(f"temp_images/{file_path.stem}_{i}.png", image)
+        ocr_dicts.extend(ocr_result.ocr_dict)
+    infer = Infer(model_path=output_model_path, preprocessor=TextPreprocessor())
+    prediction = infer.predict(text=" ".join([i["text"] for i in ocr_dicts]))
+    logger.info(f"Prediction: {prediction}")

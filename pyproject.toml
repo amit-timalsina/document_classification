@@ -25,6 +25,12 @@ fasttext = "^0.9.3"
 mypy = "^1.12.1"
 ruff = "^0.7.0"
 
+
+[tool.poetry.group.exp.dependencies]
+instructor = "^1.6.3"
+extract-thinker = "^0.0.18"
+langsmith = "^0.1.137"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

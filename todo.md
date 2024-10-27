@@ -25,16 +25,16 @@ OCR
 
 Classification
     Text only Models
-        LLM Based classification {due:2024-10-22}
-        Fasttext {due:2024-10-22}
-        BERT
+        LLM Based classification {due:2024-10-22} {cm:2024-10-27}
+        Fasttext {due:2024-10-22} {cm:2024-10-23}
+        BERT {due:2024-10-23}
     Text + Layout Models
         BROS
-        LayoutLM {due:2024-10-23}
+        LayoutLM (docquery) {due:2024-10-23}
     Text + Layout Models + Vision Models
         LayoutLMV2
         Donut {due:2024-10-23}
     Embedding
-        Semantic Similarity
+        [Semantic Similarity](https://www.altimetrik.com/blog/generative-ai-for-document-classification/)
         Clustering
     Vision only Models

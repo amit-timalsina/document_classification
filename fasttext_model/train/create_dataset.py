@@ -9,11 +9,11 @@ if TYPE_CHECKING:
     from fasttext_model.text_preprocessor import TextPreprocessor
 
 
-class DatasetPreparer:
-    """Prepares datasets for model training."""
+class OcrTextPreparer:
+    """Loads and preprocesses text files."""
 
     def __init__(self, preprocessor: TextPreprocessor) -> None:
-        """Initialize DatasetPreparer."""
+        """Initialize the TextLoader with a TextPreprocessor."""
         self.preprocessor = preprocessor
 
     def load_and_preprocess(self, folder_path: str) -> list[str]:
@@ -29,8 +29,16 @@ class DatasetPreparer:
                         preprocessed_texts.append(self.preprocessor.preprocess_text(text))
         return preprocessed_texts
 
+
+class DatasetPreparer:
+    """Prepares datasets for model training."""
+
+    def __init__(self, preprocessor: TextPreprocessor) -> None:
+        """Initialize DatasetPreparer."""
+        self.text_loader = OcrTextPreparer(preprocessor)
+
+    @staticmethod
     def split_data(
-        self,
         data: list[str],
         train_ratio: float = 0.7,
         val_ratio: float = 0.15,
@@ -42,14 +50,15 @@ class DatasetPreparer:
         val_end = train_end + int(val_ratio * total)
         return data[:train_end], data[train_end:val_end], data[val_end:]
 
+    @staticmethod
     def save_split_data(
-        self,
         train_data: list[str],
         val_data: list[str],
         test_data: list[str],
         output_folder_path: str,
     ) -> None:
-        """Save split data to specified file paths."""
+        """Save split data to files in the specified folder path."""
+        Path(output_folder_path).mkdir(parents=True, exist_ok=True)
         paths = [("train.txt", train_data), ("validation.txt", val_data), ("test.txt", test_data)]
 
         for filename, dataset in paths:
@@ -60,13 +69,11 @@ class DatasetPreparer:
 
     def create_dataset(self, data_folder_path: str, output_folder_path: str) -> None:
         """Create and save datasets for fastText from given data folder."""
-        Path(output_folder_path).mkdir(parents=True, exist_ok=True)
-
         all_train_data, all_val_data, all_test_data = [], [], []
 
         for label_folder_path in Path(data_folder_path).iterdir():
             if label_folder_path.is_dir():
-                files = self.load_and_preprocess(str(label_folder_path))
+                files = self.text_loader.load_and_preprocess(str(label_folder_path))
                 labeled_data = [f"__label__{label_folder_path.name} {text}" for text in files]
                 train_data, val_data, test_data = self.split_data(labeled_data)
 
