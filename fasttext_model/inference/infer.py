@@ -3,6 +3,8 @@ from pathlib import Path
 import fasttext  # type: ignore[import-untyped]
 
 from fasttext_model.text_preprocessor import TextPreprocessor
+from ocr.base import OCRProvider
+from ocr.readers.file_reader import FileReader
 
 
 class Infer:
@@ -18,7 +20,14 @@ class Infer:
         preprocessed_text = self.preprocessor.preprocess_text(text)
         return self.model.predict(preprocessed_text)
 
-    def predict_from_file(self, file_path: Path) -> tuple:
-        """Predict the label of the text within the specified file."""
-        with file_path.open("r", encoding="utf-8") as file:
-            return self.predict(file.read())
+    def predict_from_file(self, file_path: Path, ocr_provider: OCRProvider) -> tuple:
+        """Predict the label from a PDF file using OCR."""
+        images = FileReader.read_file_from_path(str(file_path))
+        ocr_dicts = []
+
+        for image in images:
+            ocr_result = ocr_provider.perform_ocr(image)
+            ocr_dicts.extend(ocr_result.ocr_dict)
+
+        text = " ".join([i["text"] for i in ocr_dicts])
+        return self.predict(text)
