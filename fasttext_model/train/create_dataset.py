@@ -68,7 +68,7 @@ class OcrTextPreparer:
         return preprocessed_texts
 
 
-class DatasetPreparer:
+class FasttextDatasetPreparer:
     """Prepares datasets for model training."""
 
     def __init__(self, ocr_text_preparer: OcrTextPreparer) -> None:

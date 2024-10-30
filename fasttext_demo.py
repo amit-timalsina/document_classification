@@ -7,9 +7,9 @@ from typing import TYPE_CHECKING
 import typer
 
 from fasttext_model.evaluate.evaluate import evaluate
-from fasttext_model.inference.infer import Infer
+from fasttext_model.predictor.predictor import FasttextPredictor
 from fasttext_model.text_preprocessor import TextPreprocessor
-from fasttext_model.train.create_dataset import DatasetPreparer, OcrTextPreparer
+from fasttext_model.train.create_dataset import FasttextDatasetPreparer, OcrTextPreparer
 from fasttext_model.train.train import train_fasttext
 from logger import logger
 from ocr.providers.closed_source.google_vision.ocr import GoogleVisionOCR
@@ -69,7 +69,7 @@ def train_and_evaluate(
     metrics_path = metrics_path or config.metrics_path
 
     ocr_provider = get_ocr_provider()
-    dataset_preparer = DatasetPreparer(
+    dataset_preparer = FasttextDatasetPreparer(
         ocr_text_preparer=OcrTextPreparer(TextPreprocessor(), ocr_provider=ocr_provider),
     )
     dataset_preparer.create_dataset(
@@ -102,8 +102,8 @@ def inference(
     model_path = model_path or config.output_model_path
 
     ocr_provider = get_ocr_provider()
-    infer = Infer(model_path=model_path, preprocessor=TextPreprocessor())
-    prediction = infer.predict_from_file(
+    predictor = FasttextPredictor(model_path=model_path, preprocessor=TextPreprocessor())
+    prediction = predictor.predict_from_file(
         file_path=file_path,
         ocr_provider=ocr_provider,
     )

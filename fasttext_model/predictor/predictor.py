@@ -7,7 +7,7 @@ from ocr.base import OCRProvider
 from ocr.readers.file_reader import FileReader
 
 
-class Infer:
+class FasttextPredictor:
     """Performs inference using a trained fastText model."""
 
     def __init__(self, model_path: Path, preprocessor: TextPreprocessor) -> None:
