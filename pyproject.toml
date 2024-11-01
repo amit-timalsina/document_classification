@@ -8,9 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-docquery = "^0.0.7"
 pydantic = "^2.7.0"
-transformers = "4.23"
 pandas = "^2.2.3"
 loguru = "^0.7.2"
 paddleocr = "^2.9.0"
@@ -19,6 +17,9 @@ albumentations = "^1.4.18"
 google = "^3.0.0"
 google-cloud-vision = "^3.7.4"
 fasttext = "^0.9.3"
+instructor = "^1.6.3"
+langsmith = "^0.1.139"
+torch = "^2.5.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -27,9 +28,10 @@ ruff = "^0.7.0"
 
 
 [tool.poetry.group.exp.dependencies]
-instructor = "^1.6.3"
 extract-thinker = "^0.0.18"
-langsmith = "^0.1.137"
+transformers = "^4.46.1"
+datasets = "^3.1.0"
+scikit-learn = "^1.5.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -55,5 +57,5 @@ extend-select = ["I"]
 "**/routers/**/*.py" = ["D417"]
 
 [tool.mypy]
-python_version = "3.10.15"
+python_version = "3.10"
 strict = false
