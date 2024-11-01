@@ -32,6 +32,7 @@ extract-thinker = "^0.0.18"
 transformers = "^4.46.1"
 datasets = "^3.1.0"
 scikit-learn = "^1.5.2"
+ray = "^2.38.0"
 
 [build-system]
 requires = ["poetry-core"]
