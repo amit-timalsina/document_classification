@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class ModelConfig(BaseModel):
-    """Configuration for BERT model training."""
+    """Configuration for language model."""
 
     num_labels: int
     max_length: int = 512
