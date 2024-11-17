@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from language_model.config import ModelConfig
 
 
-class SLMModel:
+class LanguageModel:
     """Main class for Language Model."""
 
     def __init__(self, config: ModelConfig, device: torch.device) -> None:

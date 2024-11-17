@@ -15,13 +15,13 @@ if TYPE_CHECKING:
 
     from sklearn.preprocessing import LabelEncoder  # type: ignore[import-untyped]
 
-    from language_model.slm_model import SLMModel
+    from language_model.slm_model import LanguageModel
 
 
 class SLMPredictor:
     """Predictor for the SLM model."""
 
-    def __init__(self, model: SLMModel, processed_data_path: Path) -> None:
+    def __init__(self, model: LanguageModel, processed_data_path: Path) -> None:
         """Initialize the predictor with model."""
         self.model = model
         self.label_encoder = self.load_label_encoder(processed_data_path=processed_data_path)

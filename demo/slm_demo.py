@@ -8,8 +8,8 @@ from language_model.finetune import (
     SLMModelTrainer,
 )
 from language_model.predict import SLMPredictor
-from language_model.slm_model import SLMModel
-from language_model.tokenizer import TextWithLayoutTokenizer
+from language_model.slm_model import LanguageModel
+from language_model.tokenizers.text_with_layout import TextWithLayoutTokenizer
 from language_model.utils import get_device
 from logger import logger
 
@@ -46,7 +46,7 @@ def finetune(  # noqa: PLR0913
     device = get_device()
     logger.info(f"Using device: {device}")
 
-    model = SLMModel(
+    model = LanguageModel(
         config=ModelConfig(
             model_name="microsoft/layoutlm-base-uncased",
             num_labels=num_labels,
@@ -98,7 +98,7 @@ def predict(
     ```
     """
     device = get_device()
-    model = SLMModel(
+    model = LanguageModel(
         config=ModelConfig(
             model_name=str(model_path),
             num_labels=2,

@@ -9,14 +9,19 @@ from logger import logger
 if TYPE_CHECKING:
     from torch.utils.data import DataLoader
 
-    from language_model.slm_model import SLMModel
-    from language_model.tokenizer import BaseTokenizer
+    from language_model.slm_model import LanguageModel
+    from language_model.tokenizers.base import BaseTokenizer
 
 
 class SLMModelTrainer:
     """Main class for Sequence Learning Model training."""
 
-    def __init__(self, model: SLMModel, learning_rate: float, tokenizer: BaseTokenizer) -> None:
+    def __init__(
+        self,
+        model: LanguageModel,
+        learning_rate: float,
+        tokenizer: BaseTokenizer,
+    ) -> None:
         """Initialize the trainer with model and tokenizer."""
         self.model = model
         self.tokenizer = tokenizer
