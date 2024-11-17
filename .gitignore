@@ -4,7 +4,10 @@ logs
 __pycache__
 files
 .env
-ocr_jsons
+ocr_jsons*
 *.bin
 dataset
 metrics.json
+
+documentation
+ipynb_experiments

@@ -24,19 +24,18 @@ OCR
         Others
 
 Classification
-    Text only Models
+    Text only Models {cm:2024-11-17}
         LLM Based classification {due:2024-10-22} {cm:2024-10-27}
         Fasttext {due:2024-10-22} {cm:2024-10-23}
-        BERT {due:2024-10-31}
-    Text + Layout Models
-        BROS
-        LayoutLM (docquery) {due:2024-10-31}
-    Text + Layout Models + Vision Models
+        BERT {due:2024-10-31} {cm:2024-11-01}
+    Text + Layout Models {cm:2024-11-17}
+        LayoutLM (docquery) {cm:2024-11-17}
+    Text + Layout Models + Vision Models {c}
         LayoutLMV2
-        Donut {due:2024-10-31}
-    Embedding
+        Donut
+    Embedding {c}
         [Semantic Similarity](https://www.altimetrik.com/blog/generative-ai-for-document-classification/)
         Clustering
-    Vision only Models
+    Vision only Models {c}
         LVLM
         Other CNN models

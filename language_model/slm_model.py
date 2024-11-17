@@ -2,20 +2,21 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import torch
 from transformers import (  # type: ignore[import-untyped]
-    BertForSequenceClassification,
+    AutoModelForSequenceClassification,
     BertTokenizer,
 )
 
 if TYPE_CHECKING:
     from pathlib import Path
 
+    import torch
+
     from language_model.config import ModelConfig
 
 
 class SLMModel:
-    """Main class for Sequence Learning Model."""
+    """Main class for Language Model."""
 
     def __init__(self, config: ModelConfig, device: torch.device) -> None:
         """Initialize the model with configuration."""
@@ -24,9 +25,9 @@ class SLMModel:
         self.model, self.tokenizer = self._initialize_model()
         self.model.to(self.device)
 
-    def _initialize_model(self) -> tuple[BertForSequenceClassification, BertTokenizer]:
+    def _initialize_model(self) -> tuple[AutoModelForSequenceClassification, BertTokenizer]:
         """Initialize the BERT model and tokenizer."""
-        model = BertForSequenceClassification.from_pretrained(
+        model = AutoModelForSequenceClassification.from_pretrained(
             self.config.model_name,
             num_labels=self.config.num_labels,
         )

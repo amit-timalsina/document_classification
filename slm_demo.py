@@ -3,12 +3,13 @@ from pathlib import Path
 import typer
 
 from language_model.config import ModelConfig
-from language_model.create_dataset import SLMDatasetPreparer
+from language_model.create_dataset import TextWithBBoxDatasetPreparer
 from language_model.finetune import (
     SLMModelTrainer,
 )
 from language_model.predict import SLMPredictor
 from language_model.slm_model import SLMModel
+from language_model.tokenizer import TextWithLayoutTokenizer
 from language_model.utils import get_device
 from logger import logger
 
@@ -33,7 +34,8 @@ def finetune(  # noqa: PLR0913
         processed_ocr_data.pkl
     ```
     """
-    dataset_preparer = SLMDatasetPreparer()
+    # dataset_preparer = TextOnlyDatasetPreparer()
+    dataset_preparer = TextWithBBoxDatasetPreparer()
     train_dataloader, val_dataloader, label_encoder = dataset_preparer.prepare_data(
         ocr_json_path,
         batch_size,
@@ -46,12 +48,25 @@ def finetune(  # noqa: PLR0913
 
     model = SLMModel(
         config=ModelConfig(
+            model_name="microsoft/layoutlm-base-uncased",
             num_labels=num_labels,
         ),
         device=device,
     )
+    # tokenizer = TextTokenizer(
+    #     tokenizer=model.tokenizer,
+    #     max_length=model.config.max_length,
+    #     device=device,
+    # )
+
+    tokenizer = TextWithLayoutTokenizer(
+        tokenizer=model.tokenizer,
+        max_length=model.config.max_length,
+        device=device,
+    )
     model_trainer = SLMModelTrainer(
         model=model,
+        tokenizer=tokenizer,
         learning_rate=learning_rate,
     )
 

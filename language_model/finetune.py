@@ -10,42 +10,27 @@ if TYPE_CHECKING:
     from torch.utils.data import DataLoader
 
     from language_model.slm_model import SLMModel
+    from language_model.tokenizer import BaseTokenizer
 
 
 class SLMModelTrainer:
     """Main class for Sequence Learning Model training."""
 
-    def __init__(self, model: SLMModel, learning_rate: float) -> None:
-        """Initialize the trainer with model."""
+    def __init__(self, model: SLMModel, learning_rate: float, tokenizer: BaseTokenizer) -> None:
+        """Initialize the trainer with model and tokenizer."""
         self.model = model
+        self.tokenizer = tokenizer
         self.optimizer = torch.optim.AdamW(
             self.model.model.parameters(),
             lr=learning_rate,
         )
 
-    def _process_batch(
-        self,
-        batch_texts: list[str],
-        batch_labels: torch.Tensor,
-    ) -> tuple[dict[str, torch.Tensor], torch.Tensor]:
-        """Process a batch of data."""
-        inputs = self.model.tokenizer(
-            batch_texts,
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=self.model.config.max_length,
-        )
-        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
-        return inputs, batch_labels.to(self.model.device)
-
     def _train_epoch(self, train_dataloader: DataLoader) -> float:
-        """Train for one epoch."""
         self.model.model.train()
         total_loss = 0.0
 
-        for batch_texts, batch_labels in train_dataloader:
-            inputs, labels = self._process_batch(batch_texts, batch_labels)
+        for batch in train_dataloader:
+            inputs, labels = self.tokenizer.process_batch(batch)
             outputs = self.model.model(**inputs, labels=labels)
             loss = outputs.loss
             total_loss += loss.item()
@@ -57,15 +42,14 @@ class SLMModelTrainer:
         return total_loss / len(train_dataloader)
 
     def _validate(self, val_dataloader: DataLoader) -> tuple[float, float]:
-        """Perform validation."""
         self.model.model.eval()
         total_loss = 0.0
         correct_predictions: int | float = 0
         total_predictions = 0
 
         with torch.no_grad():
-            for batch_texts, batch_labels in val_dataloader:
-                inputs, labels = self._process_batch(batch_texts, batch_labels)
+            for batch in val_dataloader:
+                inputs, labels = self.tokenizer.process_batch(batch)
                 outputs = self.model.model(**inputs, labels=labels)
                 total_loss += outputs.loss.item()
 
