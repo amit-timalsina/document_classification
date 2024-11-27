@@ -1,3 +1,5 @@
+# You need [TODOMD](https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md) vscode extension to make sense of this file
+
 OCR
     Open Source
         Tesseract {cm:2024-10-21}
@@ -27,6 +29,8 @@ Classification
     Vision only Models
         LVLM
         Other CNN models
+Tests
+
 
 # Usage Rules:
 # TODO file based on the todo.txt format - https://github.com/todotxt/todo.txt
