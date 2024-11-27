@@ -25,6 +25,7 @@ torch = "^2.5.1"
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.12.1"
 ruff = "^0.7.0"
+pytest = "^8.3.3"
 
 
 [tool.poetry.group.exp.dependencies]
