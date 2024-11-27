@@ -31,5 +31,7 @@ The goal is to find great patterns and cool examples to highlight.
 
 If you encounter any issues or want to provide feedback, you can create an issue in this repository. You can also reach out to me on Twitter at [@amittimalsina14](https://x.com/amittimalsina14).
 
-## What's coming next?
 Check the [todo.md](https://github.com/amit-timalsina/document_classification/blob/master/todo.md) file for the list of features that are coming next with their due dates.
+
+## What's coming next?
+I am going to first add tests and refactor the code to make it more readable, usuable, and maintainable. Then I will release documentation and more examples.
