@@ -11,3 +11,6 @@ metrics.json
 
 documentation
 ipynb_experiments
+
+# Distribution / packaging
+dist/
