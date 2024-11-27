@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from common.schemas.bounding_box import BoundingBox
 from common.utils.file_utils import json_to_dataframe, load_json_file
 from language_model.dataset_preparer.base import BaseDatasetPreparer
-from language_model.ocr_dataset import BoundingBox, OCRwithBBoxDataset
+from language_model.schemas.ocr_with_bbox_dataset import OCRwithBBoxDataset
 
 if TYPE_CHECKING:
     from pathlib import Path

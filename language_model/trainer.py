@@ -9,7 +9,7 @@ from logger import logger
 if TYPE_CHECKING:
     from torch.utils.data import DataLoader
 
-    from language_model.slm_model import LanguageModel
+    from language_model.schemas.slm_model import LanguageModel
     from language_model.tokenizers.base import BaseTokenizer
 
 

@@ -30,12 +30,12 @@ Classification
         BERT {due:2024-10-31} {cm:2024-11-01}
     Text + Layout Models {cm:2024-11-17}
         LayoutLM (docquery) {cm:2024-11-17}
-    Text + Layout Models + Vision Models {c}
+    Text + Layout Models + Vision Models
         LayoutLMV2
         Donut
-    Embedding {c}
+    Embedding
         [Semantic Similarity](https://www.altimetrik.com/blog/generative-ai-for-document-classification/)
         Clustering
-    Vision only Models {c}
+    Vision only Models
         LVLM
         Other CNN models

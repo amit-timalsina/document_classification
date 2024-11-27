@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
     from sklearn.preprocessing import LabelEncoder  # type: ignore[import-untyped]
 
-    from language_model.slm_model import LanguageModel
+    from language_model.schemas.slm_model import LanguageModel
 
 
 class SLMPredictor:

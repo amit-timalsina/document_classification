@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from common.utils.file_utils import json_to_dataframe, load_json_file
 from language_model.dataset_preparer.base import BaseDatasetPreparer
-from language_model.ocr_dataset import OCRDataset
+from language_model.schemas.ocr_dataset import OCRDataset
 
 if TYPE_CHECKING:
     from pathlib import Path
