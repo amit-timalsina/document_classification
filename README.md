@@ -1,49 +1,35 @@
-# Document Classification
+# Document Classification: All in one place
+This package provides support to classify documents using all the popular avialable methods. Along with document classification, it also provides support to a single interface for OCR using both open source models like: Tesseract and PaddleOCR, and commercial models like Google OCR, etc.
 
-## Template Matching
-Write rules for template matching
+## Features
+- OCR
+    - Tesseract
+    - Google OCR
+- Classification
+    - Fasttext (train, evaluate, predict)
+    - Language Models like BERT (train, evaluate, predict)
+    - Language + Layout Models like LayoutLM (train, evaluate, predict)
+    - LLM (evaluate, predict)
 
-Document -> OCR -> Data Preparation -> Template Matching
+## Installation
+Install with a single command:
+```bash
+pip install -U document-classification
+```
+or if you use poetry (like me):
+```bash
+poetry add document-classification
+```
 
-Manual human intervention required. But can be automated by asking LLM to write rules. We will try both (manual and using LLM).
+## Usuage
+Please check the [examples](https://github.com/amit-timalsina/document_classification/tree/master/examples) directory for examples on how to use the package.
 
-## Fasttext
-Training
-Document -> OCR -> Train / Val / Test data -> Fasttext training
+## Contributing
 
-Inference
-Document -> OCR -> Data preparation -> Fasttext inference
+Your contributions are welcome! If you have great examples or find neat patterns, clone the repo and add another example. 
+The goal is to find great patterns and cool examples to highlight.
 
-## BERT
-Training
-Document -> OCR -> Train / Val / Test data -> BERT training
+If you encounter any issues or want to provide feedback, you can create an issue in this repository. You can also reach out to me on Twitter at [@amittimalsina14](https://x.com/amittimalsina14).
 
-Inference
-Document -> OCR -> Data preparation -> BERT inference
-
-## Vision models
-I don't know how this works
-
-## Text + Layout Models (BROS, LayoutLM)
-
-## Text + Layout Models + Vision Models (LayoutLMV2, etc)
-
-## Large Language models (LLMs)
-
-## Semantic Similarity
-
-## Clustering
-
-# OCR
-
-We need to give option to use both open source models like:
-- Teserract
-- PaddleOCR
-
-and api providers like:
-- Google Vision API
-- AWS Textract
-- Azure OCR
-
-Furthermore, we might want to give support to use in built ocr engine like in case od Donut model
-Also, support to load any existing model in Huggigface liek GOT, etc.
+## What's coming next?
+Check the [todo.md](https://github.com/amit-timalsina/document_classification/blob/master/todo.md) file for the list of features that are coming next with their due dates.
