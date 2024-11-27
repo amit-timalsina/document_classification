@@ -1,4 +1,11 @@
-# You need [TODOMD](https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md) vscode extension to make sense of this file
+# Usage Rules:
+# TODO file based on the todo.txt format - https://github.com/todotxt/todo.txt
+# Use the todo.txt format for the todo list
+# Please get the `usernamehw.todo-md` extension for the vscode.
+# Use the following tags: #todo, #in-progress, #done, #blocked, #urgent.
+# Please add Assignee to each task.
+# It is always better to add todos next to the code changes.
+# Only add things here when not possible to add next to the code changes.
 
 OCR
     Open Source
@@ -30,16 +37,3 @@ Classification
         LVLM
         Other CNN models
 Tests
-
-
-# Usage Rules:
-# TODO file based on the todo.txt format - https://github.com/todotxt/todo.txt
-# Use the todo.txt format for the todo list
-# Please get the `usernamehw.todo-md` extension for the vscode.
-# Use the following tags: #todo, #in-progress, #done, #blocked, #urgent.
-# Please use Asana for the project management and avoid this file.
-# This file is only meant for non-important tasks like: use AwareDatetime instead of Datetime, etc.
-# If this file grows before 100 tasks, move everything to Asana and trim this file back to zero.
-# Please add Assignee to each task.
-# It is always better to add todos next to the code changes.
-# Only add things here when not possible to add next to the code changes.
