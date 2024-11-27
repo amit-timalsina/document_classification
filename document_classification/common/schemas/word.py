@@ -11,15 +11,3 @@ class Word(BaseModel):
     y0: float = Field(description="The bottom y-coordinate of the word's bounding box")
     x2: float = Field(description="The right x-coordinate of the word's bounding box")
     y2: float = Field(description="The top y-coordinate of the word's bounding box")
-
-
-class Line(BaseModel):
-    """Represents a line of text in a document containing multiple words."""
-
-    words: list[Word] = Field(description="A list of Word objects that make up this line")
-
-
-class Document(BaseModel):
-    """Represents a complete document containing multiple lines of text."""
-
-    lines: list[Line] = Field(description="A list of Line objects that make up this document")

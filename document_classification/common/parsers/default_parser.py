@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from document_classification.common.parsers.pydantic_models import Document, Line, Word
+from document_classification.common.schemas import Document, Line, Word
 
 if TYPE_CHECKING:
     import pandas as pd
