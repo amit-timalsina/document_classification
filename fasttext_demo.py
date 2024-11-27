@@ -6,16 +6,19 @@ from typing import TYPE_CHECKING
 
 import typer
 
-from fasttext_model.evaluate.evaluate import evaluate
-from fasttext_model.predictor.predictor import FasttextPredictor
-from fasttext_model.text_preprocessor import TextPreprocessor
-from fasttext_model.train.create_dataset import FasttextDatasetPreparer, OcrTextPreparer
-from fasttext_model.train.train import train_fasttext
+from document_classification.fasttext_model.evaluate.evaluate import evaluate
+from document_classification.fasttext_model.predictor.predictor import FasttextPredictor
+from document_classification.fasttext_model.text_preprocessor import TextPreprocessor
+from document_classification.fasttext_model.train.create_dataset import (
+    FasttextDatasetPreparer,
+    OcrTextPreparer,
+)
+from document_classification.fasttext_model.train.train import train_fasttext
+from document_classification.ocr.providers.closed_source.google_vision.ocr import GoogleVisionOCR
 from logger import logger
-from ocr.providers.closed_source.google_vision.ocr import GoogleVisionOCR
 
 if TYPE_CHECKING:
-    from ocr.base import OCRProvider
+    from document_classification.ocr.base import OCRProvider
 
 app = typer.Typer()
 

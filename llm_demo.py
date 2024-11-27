@@ -19,12 +19,12 @@ import typer
 from langsmith.wrappers import wrap_openai
 from openai import AsyncOpenAI
 
-from llm.classifier import LLMClassifier
-from llm.config import OCR_JSON_DIRECTORY
-from llm.evaluation import run_evaluation
-from llm.get_rebuilt_models import PromptTechnique, get_rebuilt_model
-from llm.inference import run_inference
-from llm.pydantic_models import Classifications
+from document_classification.llm.classifier import LLMClassifier
+from document_classification.llm.config import OCR_JSON_DIRECTORY
+from document_classification.llm.evaluation import run_evaluation
+from document_classification.llm.get_rebuilt_models import PromptTechnique, get_rebuilt_model
+from document_classification.llm.inference import run_inference
+from document_classification.llm.pydantic_models import Classifications
 from logger import logger
 
 if TYPE_CHECKING:

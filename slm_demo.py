@@ -2,15 +2,21 @@ from pathlib import Path
 
 import typer
 
-from common.utils.get_device import get_device
-from language_model.config import ModelConfig
-from language_model.dataset_preparer.text_only import TextOnlyDatasetPreparer
-from language_model.dataset_preparer.text_with_bbox import TextWithBBoxDatasetPreparer
-from language_model.predictor import SLMPredictor
-from language_model.schemas.slm_model import LanguageModel
-from language_model.tokenizers.text import TextTokenizer
-from language_model.tokenizers.text_with_layout import TextWithLayoutTokenizer
-from language_model.trainer import (
+from document_classification.common.utils.get_device import get_device
+from document_classification.language_model.config import ModelConfig
+from document_classification.language_model.dataset_preparer.text_only import (
+    TextOnlyDatasetPreparer,
+)
+from document_classification.language_model.dataset_preparer.text_with_bbox import (
+    TextWithBBoxDatasetPreparer,
+)
+from document_classification.language_model.predictor import SLMPredictor
+from document_classification.language_model.schemas.slm_model import LanguageModel
+from document_classification.language_model.tokenizers.text import TextTokenizer
+from document_classification.language_model.tokenizers.text_with_layout import (
+    TextWithLayoutTokenizer,
+)
+from document_classification.language_model.trainer import (
     SLMModelTrainer,
 )
 from logger import logger
