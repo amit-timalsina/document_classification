@@ -19,7 +19,7 @@ from document_classification.language_model.tokenizers.text_with_layout import (
 from document_classification.language_model.trainer import (
     SLMModelTrainer,
 )
-from logger import logger
+from document_classification.logger import logger
 
 app = typer.Typer()
 

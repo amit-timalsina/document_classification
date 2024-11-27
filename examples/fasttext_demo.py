@@ -14,8 +14,8 @@ from document_classification.fasttext_model.train.create_dataset import (
     OcrTextPreparer,
 )
 from document_classification.fasttext_model.train.train import train_fasttext
+from document_classification.logger import logger
 from document_classification.ocr.providers.closed_source.google_vision.ocr import GoogleVisionOCR
-from logger import logger
 
 if TYPE_CHECKING:
     from document_classification.ocr.base import OCRProvider

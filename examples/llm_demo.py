@@ -25,7 +25,7 @@ from document_classification.llm.evaluation import run_evaluation
 from document_classification.llm.get_rebuilt_models import PromptTechnique, get_rebuilt_model
 from document_classification.llm.inference import run_inference
 from document_classification.llm.pydantic_models import Classifications
-from logger import logger
+from document_classification.logger import logger
 
 if TYPE_CHECKING:
     from pydantic import BaseModel
