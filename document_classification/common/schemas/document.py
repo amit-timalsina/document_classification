@@ -1,14 +1,14 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
+from typing import List
 
 from pydantic import BaseModel, Field
 
-if TYPE_CHECKING:
-    from document_classification.common.schemas.line import Line
+from document_classification.common.schemas.line import Line
 
 
 class Document(BaseModel):
     """Represents a complete document containing multiple lines of text."""
 
-    lines: list[Line] = Field(description="A list of Line objects that make up this document")
+    lines: List[Line] = Field(  # noqa: FA100
+        default_factory=list,
+        description="A list of Line objects that make up this document",
+    )
