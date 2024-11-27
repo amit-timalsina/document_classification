@@ -5,8 +5,8 @@ import random
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from document_classification.logger import logger
 from document_classification.ocr.readers.file_reader import FileReader
-from logger import logger
 
 if TYPE_CHECKING:
     from document_classification.fasttext_model.text_preprocessor import TextPreprocessor

@@ -2,7 +2,7 @@ from pathlib import Path
 
 import fasttext  # type: ignore[import-untyped]
 
-from logger import logger
+from document_classification.logger import logger
 
 
 def train_fasttext(dataset_dir_path: Path, output_model_path: Path) -> None:

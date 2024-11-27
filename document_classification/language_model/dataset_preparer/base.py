@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader, Dataset
 from document_classification.language_model.dataset_preparer.custom_collate_function import (
     custom_collate_fn,
 )
-from logger import logger
+from document_classification.logger import logger
 
 if TYPE_CHECKING:
     from pathlib import Path

@@ -2,11 +2,11 @@ import numpy as np
 import pandas as pd
 import pytesseract  # type: ignore[import-untyped]
 
+from document_classification.logger import logger
 from document_classification.ocr.base import OCRProvider
 from document_classification.ocr.config import ocr_config
 from document_classification.ocr.providers.mappings import standard_to_tesseract
 from document_classification.ocr.schemas.ocr_result import OcrResult
-from logger import logger
 
 
 class TesseractOCR(OCRProvider):

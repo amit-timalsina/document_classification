@@ -5,7 +5,7 @@ from pathlib import Path
 
 import fasttext  # type: ignore[import-untyped]
 
-from logger import logger
+from document_classification.logger import logger
 
 
 def accuracy_matrix_tf(test_file_path: Path, model: fasttext.FastText._FastText) -> dict:

@@ -10,7 +10,7 @@ from document_classification.common.parsers.layout_preserving_formatter import (
     LayoutPreservingFormatter,
 )
 from document_classification.common.utils.json_to_ocr_text import json_to_ocr_text
-from logger import logger
+from document_classification.logger import logger
 
 if TYPE_CHECKING:
     from pathlib import Path

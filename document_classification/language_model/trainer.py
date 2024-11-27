@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 import torch
 
-from logger import logger
+from document_classification.logger import logger
 
 if TYPE_CHECKING:
     from torch.utils.data import DataLoader
