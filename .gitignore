@@ -1,16 +1,39 @@
-logs
-.venv
-.mypy_cache
-__pycache__
-files
-.env
-ocr_jsons*
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.bin
+*.dll
+*.egg
+*.egg-info
+*.npy
+*.so
+*.py[co]
+*.pyd
+
+# Installer / package related
+dist/
+
+# Unit test / coverage reports
+.coverage
+.mypy_cache
+.tox
+
+# Logs
+logs/
+
+# Environment
+.venv
+.env
+
+# Data
 dataset
 metrics.json
+ocr_jsons*
 
+# Documentation
 documentation
+
+# Notebooks
 ipynb_experiments
 
-# Distribution / packaging
-dist/
+# Files
+files

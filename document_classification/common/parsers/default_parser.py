@@ -18,7 +18,6 @@ class DefaultParser:
 
         Args:
             merge_threshold (float, optional): Threshold to determine if words belong to same line.
-            Defaults to 0.53.
 
         """
         self.merge_threshold = merge_threshold

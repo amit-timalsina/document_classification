@@ -1,3 +1,4 @@
+from document_classification.common.parsers.config import parser_config
 from document_classification.common.schemas import Document, Line
 
 
@@ -9,17 +10,21 @@ class LayoutPreservingFormatter:
     by converting pixel coordinates to character positions.
     """
 
-    def __init__(self, size: int = 300, pixel_to_char: float = 0.2) -> None:
+    def __init__(
+        self,
+        max_line_length: int = parser_config.max_line_length_char,
+        pixel_to_char_ratio: float = parser_config.pixel_to_char_ratio,
+    ) -> None:
         """
-        Initialize the formatter with size and pixel to character ratio.
+        Initialize the formatter with max_line_length and pixel to character ratio.
 
         Args:
-            size: The maximum line length in characters.
-            pixel_to_char: The conversion ratio from pixels to characters.
+            max_line_length: The maximum line length in characters.
+            pixel_to_char_ratio: The conversion ratio from pixels to characters.
 
         """
-        self.size = size
-        self.pixel_to_char = pixel_to_char
+        self.max_line_length = max_line_length
+        self.pixel_to_char_ratio = pixel_to_char_ratio
 
     def format(self, document: Document) -> str:
         """
@@ -35,9 +40,9 @@ class LayoutPreservingFormatter:
         return "\n".join(self._format_line(line) for line in document.lines)
 
     def _format_line(self, line: Line) -> str:
-        final_string = [" "] * self.size
+        final_string = [" "] * self.max_line_length
         for word in line.words:
-            start_index = round(word.x0 * self.pixel_to_char)
+            start_index = round(word.x0 * self.pixel_to_char_ratio)
             word_text = word.text
             len_word = len(word_text)
             final_string[start_index : start_index + len_word] = word_text
