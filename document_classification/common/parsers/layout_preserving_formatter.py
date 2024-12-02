@@ -1,11 +1,11 @@
-from document_classification.common.parsers.pydantic_models import Document, Line
+from document_classification.common.schemas import Document, Line
 
 
 class LayoutPreservingFormatter:
     """
     A formatter that preserves the layout of text based on pixel coordinates.
 
-    This class formats text documents while maintaining the original spatial layout
+    This class formats document into a string while maintaining the original spatial layout
     by converting pixel coordinates to character positions.
     """
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from document_classification.common.parsers.config import parser_config
 from document_classification.common.schemas import Document, Line, Word
 
 if TYPE_CHECKING:
@@ -11,7 +12,7 @@ if TYPE_CHECKING:
 class DefaultParser:
     """A parser that converts DataFrame into Document by grouping words into lines."""
 
-    def __init__(self, merge_threshold: float = 0.53) -> None:
+    def __init__(self, merge_threshold: float = parser_config.merge_threshold) -> None:
         """
         Initialize DefaultParser with merge threshold for line detection.
 

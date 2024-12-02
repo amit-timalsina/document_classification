@@ -2,7 +2,7 @@ from typing import Protocol
 
 import pandas as pd
 
-from document_classification.common.parsers.pydantic_models import Document
+from document_classification.common.schemas.document import Document
 
 
 class Parser(Protocol):
