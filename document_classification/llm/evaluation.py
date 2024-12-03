@@ -14,11 +14,11 @@ if TYPE_CHECKING:
 
     from pydantic import BaseModel
 
-    from document_classification.llm.classifier import LLMClassifier
+    from document_classification.llm.classifier import OpenAILLMClassifier
 
 
 async def run_evaluation(
-    classifier: LLMClassifier,
+    classifier: OpenAILLMClassifier,
     directory: Path,
     classification_model: type[BaseModel],
 ) -> dict[str, list[dict[str, Any]]]:
