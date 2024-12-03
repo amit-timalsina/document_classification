@@ -1,6 +1,8 @@
 # Document Classification: All in one place
 This package provides support to classify documents using all the popular avialable methods. Along with document classification, it also provides support to a single interface for OCR using both open source models like: Tesseract and PaddleOCR, and commercial models like Google OCR, etc.
 
+PYPI: [document-classification](https://pypi.org/project/document-classification/)
+
 ## Features
 - OCR
     - Tesseract
