@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from document_classification.common.parsers.parse_and_format import parse_and_format
 from document_classification.common.utils.file_utils import json_to_dataframe, load_json_file
+from document_classification.common.utils.parse_and_format import parse_and_format
 
 if TYPE_CHECKING:
     from pathlib import Path

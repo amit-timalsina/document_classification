@@ -1,6 +1,8 @@
 import pandas as pd
 import pytest
 
+from document_classification.ocr.config import ocr_config
+
 
 @pytest.fixture
 def sample_df():
@@ -17,7 +19,7 @@ def sample_df():
             "y0": [0.0, 0.0, 10.0, 10.0],
             "x2": [5.0, 10.0, 5.0, 10.0],
             "y2": [10.0, 10.0, 20.0, 20.0],
-            "space_type": ["word", "word", "word", "word"],
+            "space_type": [1, 3, 2, 1],
             "index_sort": [0, 1, 2, 3],
         },
     )
@@ -26,19 +28,5 @@ def sample_df():
 @pytest.fixture
 def empty_df():
     return pd.DataFrame(
-        columns=[
-            "text",
-            "confidence",
-            "page",
-            "block",
-            "paragraph",
-            "line",
-            "word_num",
-            "x0",
-            "y0",
-            "x2",
-            "y2",
-            "space_type",
-            "index_sort",
-        ],
+        columns=ocr_config.output_columns,
     )

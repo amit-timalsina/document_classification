@@ -3,6 +3,8 @@ import pandas as pd
 
 def df_to_text(df: pd.DataFrame) -> str:
     """Convert dataframe to plain text conserving blocks and lines."""
+    # TODO (Amit): Isn't this also a type of formatter? The only problem is it takes a dataframe as
+    # input.
     text = ""
     for row in df.itertuples():
         text += str(row.text)
