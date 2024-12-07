@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import asyncio
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from langsmith import traceable
-from pydantic import BaseModel
+from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
 
 if TYPE_CHECKING:
     from instructor import AsyncInstructor
+    from pydantic import BaseModel
 
 
 class BaseLLMClassifier(ABC):
@@ -29,27 +30,23 @@ class BaseLLMClassifier(ABC):
         self,
         text: str,
         classification_schema: type[BaseModel],
-    ) -> tuple[str, BaseModel]:
+    ) -> BaseModel:
         """Perform classification on the input text."""
 
     async def classify_documents(
         self,
         texts: list[str],
         classification_schema: type[BaseModel],
-    ) -> list[dict[str, Any]]:
+    ) -> list[BaseModel]:
         """Classify a list of document texts asynchronously."""
         tasks = [self.classify(text, classification_schema) for text in texts]
 
-        resps = []
+        predictions: list[BaseModel] = []
         for task in asyncio.as_completed(tasks):
-            text, label = await task
-            resps.append(
-                {
-                    "input": text,
-                    "classification": label.model_dump() if isinstance(label, BaseModel) else label,
-                },
-            )
-        return resps
+            prediction = await task
+            predictions.append(prediction)
+
+        return predictions
 
 
 class OpenAILLMClassifier(BaseLLMClassifier):
@@ -67,19 +64,19 @@ class OpenAILLMClassifier(BaseLLMClassifier):
         self,
         text: str,
         classification_model: type[BaseModel],
-    ) -> tuple[str, BaseModel]:
+    ) -> BaseModel:
         """Perform classification on the input text."""
         async with self.sem:  # some simple rate limiting
-            classification = await self.client.chat.completions.create(
+            return await self.client.chat.completions.create(
                 model=self.llm_model,
                 response_model=classification_model,
                 max_retries=2,
                 messages=[
-                    {
-                        "role": "user",
-                        "content": f"Classify the following text: {text}",
-                    },
+                    ChatCompletionSystemMessageParam(
+                        role="system",
+                        content="You are tasked with classifying a document given it's ocr text.",
+                    ),
+                    ChatCompletionUserMessageParam(role="user", content=text),
                 ],
                 strict=False,
             )
-            return text, classification
