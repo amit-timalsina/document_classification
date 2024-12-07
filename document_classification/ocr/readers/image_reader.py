@@ -8,12 +8,12 @@ class ImageReader:
     """Utilizes OpenCV to read images from various sources."""
 
     @staticmethod
-    def read_image_from_path(image_path: str) -> np.ndarray:
+    def read_image_from_path(image_path: Path) -> np.ndarray:
         """Read an image from the given file path."""
-        if not Path(image_path).is_file():
+        if not image_path.is_file():
             msg = f"Image not found at {image_path}"
             raise FileNotFoundError(msg)
-        return cv2.imread(image_path)
+        return cv2.imread(str(image_path))
 
     @staticmethod
     def read_image_from_bytes(image_bytes: bytes) -> np.ndarray:

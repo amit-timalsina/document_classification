@@ -7,6 +7,8 @@ import cv2
 from document_classification.common.utils.pdf_images import PdfImages
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     import numpy as np
 
 
@@ -14,7 +16,7 @@ class PdfReader:
     """Handles reading and converting PDF files to image sequences."""
 
     @staticmethod
-    def convert_pdf_to_images_from_path(pdf_path: str) -> list[np.ndarray]:
+    def convert_pdf_to_images_from_path(pdf_path: Path) -> list[np.ndarray]:
         """Convert a PDF file into a list of images, one per page."""
         try:
             pdf_images = PdfImages(pdf_path)

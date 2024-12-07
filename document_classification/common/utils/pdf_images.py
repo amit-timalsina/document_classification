@@ -16,7 +16,7 @@ class PdfImages:
     It is a generic python sequence that supports `len()` and indexing.
     """
 
-    def __init__(self, path: str, dpi: int = 201, password: str = "") -> None:
+    def __init__(self, path: Path, dpi: int = 201, password: str = "") -> None:
         """
         Convert all pages to images and stores them in a temporary directory.
 
@@ -40,7 +40,7 @@ class PdfImages:
 
         # Validate inputs
 
-        pdf_path = Path(path)
+        pdf_path = path
         if not pdf_path.is_file():
             msg = "Invalid PDF file path"
             raise ValueError(msg)
