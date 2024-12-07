@@ -111,12 +111,14 @@ async def evaluate_documents(
         classifications=DEFAULT_CLASSIFICATIONS,
         prompt_technique=prompt_technique,
     )
-    evaluation_results = await run_evaluation(
+    evaluation_results, report = await run_evaluation(
         classifier=create_classifier(create_openai_client()),
         directory=directory,
         classification_model=classification_model,
+        save_report_path=Path("llm_evaluation_report.json"),
     )
     log_evaluation_results(evaluation_results)
+    logger.info(f"Report: {report}")
 
 
 def log_evaluation_results(evaluation_results: dict) -> None:
