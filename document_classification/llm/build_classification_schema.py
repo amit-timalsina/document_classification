@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from document_classification.llm.schemas.classification_entity import ClassificationEntity
 
 
-def rebuild_classification_schema(
+def build_classification_schema(
     classifications: list[ClassificationEntity],
     prompt_technique: PromptTechnique,
 ) -> type[BaseModel]:

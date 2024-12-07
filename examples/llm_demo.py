@@ -23,13 +23,13 @@ from document_classification.common.parsers.layout_preserving_formatter import (
     LayoutPreservingFormatter,
 )
 from document_classification.common.utils.json_to_ocr_text import json_to_ocr_text
+from document_classification.llm.build_classification_schema import (
+    build_classification_schema,
+)
 from document_classification.llm.classifier import OpenAILLMClassifier
 from document_classification.llm.config import OCR_JSON_DIRECTORY
 from document_classification.llm.evaluation import run_evaluation
 from document_classification.llm.prompt_technique import PromptTechnique
-from document_classification.llm.rebuild_classification_schema import (
-    rebuild_classification_schema,
-)
 from document_classification.llm.schemas.classification_entity import ClassificationEntity
 from document_classification.logger import logger
 
@@ -62,7 +62,7 @@ def create_classifier(client: instructor.AsyncInstructor) -> OpenAILLMClassifier
 
 async def predict_document_type(file_path: Path, *, prompt_technique: PromptTechnique) -> None:
     """Run document type prediction on a single file."""
-    classification_model = rebuild_classification_schema(
+    classification_schema = build_classification_schema(
         classifications=DEFAULT_CLASSIFICATIONS,
         prompt_technique=prompt_technique,
     )
@@ -70,7 +70,7 @@ async def predict_document_type(file_path: Path, *, prompt_technique: PromptTech
     formatter = LayoutPreservingFormatter()
     ocr_text = json_to_ocr_text(file_path, parser, formatter)
     classifier = create_classifier(create_openai_client())
-    classification_results = await classifier.classify_documents([ocr_text], classification_model)
+    classification_results = await classifier.classify_documents([ocr_text], classification_schema)
     logger.info(f"Inference results: {classification_results}")
 
 
@@ -80,7 +80,7 @@ async def evaluate_documents(
     prompt_technique: PromptTechnique,
 ) -> None:
     """Run evaluation on all documents in directory."""
-    classification_model = rebuild_classification_schema(
+    classification_model = build_classification_schema(
         classifications=DEFAULT_CLASSIFICATIONS,
         prompt_technique=prompt_technique,
     )

@@ -28,17 +28,17 @@ class BaseLLMClassifier(ABC):
     async def classify(
         self,
         text: str,
-        classification_model: type[BaseModel],
+        classification_schema: type[BaseModel],
     ) -> tuple[str, BaseModel]:
         """Perform classification on the input text."""
 
     async def classify_documents(
         self,
         texts: list[str],
-        classification_model: type[BaseModel],
+        classification_schema: type[BaseModel],
     ) -> list[dict[str, Any]]:
         """Classify a list of document texts asynchronously."""
-        tasks = [self.classify(text, classification_model) for text in texts]
+        tasks = [self.classify(text, classification_schema) for text in texts]
 
         resps = []
         for task in asyncio.as_completed(tasks):
