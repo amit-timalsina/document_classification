@@ -27,11 +27,11 @@ app = typer.Typer()
 class Config:
     """Configuration class for FastText model training and inference."""
 
-    files_directory: Path = Path("files")
-    ocr_json_directory: Path = Path("ocr_jsons_tesseract")
-    fasttext_dataset_directory: Path = Path("fasttext_model/dataset")
-    output_model_path: Path = Path("fasttext_model/model.bin")
-    metrics_path: Path = Path("fasttext_model/metrics.json")
+    files_directory: Path
+    ocr_json_directory: Path
+    fasttext_dataset_directory: Path
+    output_model_path: Path
+    metrics_path: Path
 
 
 def get_ocr_provider() -> OCRProvider:
@@ -64,7 +64,13 @@ def train_and_evaluate(
         metrics_path: Path to save evaluation metrics. Defaults to None.
 
     """
-    config = Config()
+    config = Config(
+        files_directory=Path("files"),
+        ocr_json_directory=Path("ocr_jsons_tesseract"),
+        fasttext_dataset_directory=Path("fasttext_model/dataset"),
+        output_model_path=Path("fasttext_model/model.bin"),
+        metrics_path=Path("fasttext_model/metrics.json"),
+    )
     files_directory = files_directory or config.files_directory
     ocr_json_directory = ocr_json_directory or config.ocr_json_directory
     fasttext_dataset_directory = fasttext_dataset_directory or config.fasttext_dataset_directory
@@ -91,19 +97,16 @@ def train_and_evaluate(
 @app.command()
 def inference(
     file_path: Path,
-    model_path: Path | None = None,
+    model_path: Path,
 ) -> None:
     """
     Perform inference on a single file using the trained FastText model.
 
     Args:
-        file_path (Path): Path to the input file for prediction.
-        model_path (Path | None, optional): Path to the trained model. Defaults to None.
+        file_path: Path to the input file for prediction.
+        model_path: Path to the trained model. Defaults to None.
 
     """
-    config = Config()
-    model_path = model_path or config.output_model_path
-
     ocr_provider = get_ocr_provider()
     predictor = FasttextPredictor(model_path=model_path, preprocessor=TextPreprocessor())
     prediction = predictor.predict_from_file(
